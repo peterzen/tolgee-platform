@@ -15936,6 +15936,8 @@ export interface operations {
         filterHasCommentsInLang?: string[];
         /** Filter key translations with labels */
         filterLabel?: string[];
+        /** Filter keys with open QA issues in lang */
+        filterHasQaIssuesInLang?: string[];
         /** Filter keys with any suggestions in lang */
         filterHasSuggestionsInLang?: string[];
         /** Filter keys with no suggestions in lang */
@@ -16097,6 +16099,8 @@ export interface operations {
         filterHasCommentsInLang?: string[];
         /** Filter key translations with labels */
         filterLabel?: string[];
+        /** Filter keys with open QA issues in lang */
+        filterHasQaIssuesInLang?: string[];
         /** Filter keys with any suggestions in lang */
         filterHasSuggestionsInLang?: string[];
         /** Filter keys with no suggestions in lang */
