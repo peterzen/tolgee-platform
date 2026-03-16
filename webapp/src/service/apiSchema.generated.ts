@@ -877,6 +877,9 @@ export interface paths {
     /** Pre-translate provided keys to provided languages by TM. */
     post: operations["translate"];
   };
+  "/v2/projects/{projectId}/start-batch-job/qa-check": {
+    post: operations["qaCheck"];
+  };
   "/v2/projects/{projectId}/start-batch-job/restore-keys": {
     post: operations["restoreKeys"];
   };
@@ -2829,6 +2832,7 @@ export interface components {
         | "plan_has_subscribers"
         | "translation_failed"
         | "batch_job_not_found"
+        | "no_translations_to_recheck"
         | "key_exists_in_namespace"
         | "tag_is_blank"
         | "execution_failed_on_management_error"
@@ -5550,19 +5554,9 @@ export interface components {
       checkTypes: (
         | "EMPTY_TRANSLATION"
         | "SPACES_MISMATCH"
-        | "UNMATCHED_NEWLINES"
         | "CHARACTER_CASE_MISMATCH"
         | "MISSING_NUMBERS"
         | "PUNCTUATION_MISMATCH"
-        | "BRACKETS_MISMATCH"
-        | "SPECIAL_CHARACTER_MISMATCH"
-        | "DIFFERENT_URLS"
-        | "INCONSISTENT_PLACEHOLDERS"
-        | "INCONSISTENT_HTML"
-        | "ICU_SYNTAX"
-        | "REPEATED_WORDS"
-        | "SPELLING"
-        | "UNRESOLVED_COMMENTS"
       )[];
     };
     QaCheckIssueIgnoreRequest: {
@@ -5594,19 +5588,9 @@ export interface components {
       type:
         | "EMPTY_TRANSLATION"
         | "SPACES_MISMATCH"
-        | "UNMATCHED_NEWLINES"
         | "CHARACTER_CASE_MISMATCH"
         | "MISSING_NUMBERS"
-        | "PUNCTUATION_MISMATCH"
-        | "BRACKETS_MISMATCH"
-        | "SPECIAL_CHARACTER_MISMATCH"
-        | "DIFFERENT_URLS"
-        | "INCONSISTENT_PLACEHOLDERS"
-        | "INCONSISTENT_HTML"
-        | "ICU_SYNTAX"
-        | "REPEATED_WORDS"
-        | "SPELLING"
-        | "UNRESOLVED_COMMENTS";
+        | "PUNCTUATION_MISMATCH";
     };
     QaIssueModel: {
       /** Format: int64 */
@@ -5641,19 +5625,9 @@ export interface components {
       type:
         | "EMPTY_TRANSLATION"
         | "SPACES_MISMATCH"
-        | "UNMATCHED_NEWLINES"
         | "CHARACTER_CASE_MISMATCH"
         | "MISSING_NUMBERS"
-        | "PUNCTUATION_MISMATCH"
-        | "BRACKETS_MISMATCH"
-        | "SPECIAL_CHARACTER_MISMATCH"
-        | "DIFFERENT_URLS"
-        | "INCONSISTENT_PLACEHOLDERS"
-        | "INCONSISTENT_HTML"
-        | "ICU_SYNTAX"
-        | "REPEATED_WORDS"
-        | "SPELLING"
-        | "UNRESOLVED_COMMENTS";
+        | "PUNCTUATION_MISMATCH";
     };
     QaLanguageSettingsModel: {
       settings?: { [key: string]: "WARNING" | "OFF" };
@@ -5661,6 +5635,10 @@ export interface components {
     QaLanguageSettingsRequest: {
       /** @description Map of check types to their severity. Null values mean 'inherit from global settings'. */
       settings: { [key: string]: "WARNING" | "OFF" };
+    };
+    QaRecheckByKeysRequest: {
+      keyIds: number[];
+      languageIds?: number[];
     };
     QaSettingsModel: {
       settings: { [key: string]: "WARNING" | "OFF" };
@@ -6403,6 +6381,7 @@ export interface components {
         | "plan_has_subscribers"
         | "translation_failed"
         | "batch_job_not_found"
+        | "no_translations_to_recheck"
         | "key_exists_in_namespace"
         | "tag_is_blank"
         | "execution_failed_on_management_error"
@@ -15817,19 +15796,9 @@ export interface operations {
         filterQaCheckType?: (
           | "EMPTY_TRANSLATION"
           | "SPACES_MISMATCH"
-          | "UNMATCHED_NEWLINES"
           | "CHARACTER_CASE_MISMATCH"
           | "MISSING_NUMBERS"
           | "PUNCTUATION_MISMATCH"
-          | "BRACKETS_MISMATCH"
-          | "SPECIAL_CHARACTER_MISMATCH"
-          | "DIFFERENT_URLS"
-          | "INCONSISTENT_PLACEHOLDERS"
-          | "INCONSISTENT_HTML"
-          | "ICU_SYNTAX"
-          | "REPEATED_WORDS"
-          | "SPELLING"
-          | "UNRESOLVED_COMMENTS"
         )[];
         /** Filter keys with any suggestions in lang */
         filterHasSuggestionsInLang?: string[];
@@ -15962,19 +15931,9 @@ export interface operations {
         filterQaCheckType?: (
           | "EMPTY_TRANSLATION"
           | "SPACES_MISMATCH"
-          | "UNMATCHED_NEWLINES"
           | "CHARACTER_CASE_MISMATCH"
           | "MISSING_NUMBERS"
           | "PUNCTUATION_MISMATCH"
-          | "BRACKETS_MISMATCH"
-          | "SPECIAL_CHARACTER_MISMATCH"
-          | "DIFFERENT_URLS"
-          | "INCONSISTENT_PLACEHOLDERS"
-          | "INCONSISTENT_HTML"
-          | "ICU_SYNTAX"
-          | "REPEATED_WORDS"
-          | "SPELLING"
-          | "UNRESOLVED_COMMENTS"
         )[];
         /** Filter keys with any suggestions in lang */
         filterHasSuggestionsInLang?: string[];
@@ -16143,19 +16102,9 @@ export interface operations {
         filterQaCheckType?: (
           | "EMPTY_TRANSLATION"
           | "SPACES_MISMATCH"
-          | "UNMATCHED_NEWLINES"
           | "CHARACTER_CASE_MISMATCH"
           | "MISSING_NUMBERS"
           | "PUNCTUATION_MISMATCH"
-          | "BRACKETS_MISMATCH"
-          | "SPECIAL_CHARACTER_MISMATCH"
-          | "DIFFERENT_URLS"
-          | "INCONSISTENT_PLACEHOLDERS"
-          | "INCONSISTENT_HTML"
-          | "ICU_SYNTAX"
-          | "REPEATED_WORDS"
-          | "SPELLING"
-          | "UNRESOLVED_COMMENTS"
         )[];
         /** Filter keys with any suggestions in lang */
         filterHasSuggestionsInLang?: string[];
@@ -19224,6 +19173,50 @@ export interface operations {
       };
     };
   };
+  qaCheck: {
+    parameters: {
+      path: {
+        projectId: number;
+      };
+    };
+    responses: {
+      /** OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BatchJobModel"];
+        };
+      };
+      /** Bad Request */
+      400: {
+        content: {
+          "application/json": string;
+        };
+      };
+      /** Unauthorized */
+      401: {
+        content: {
+          "application/json": string;
+        };
+      };
+      /** Forbidden */
+      403: {
+        content: {
+          "application/json": string;
+        };
+      };
+      /** Not Found */
+      404: {
+        content: {
+          "application/json": string;
+        };
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["QaRecheckByKeysRequest"];
+      };
+    };
+  };
   restoreKeys: {
     parameters: {
       path: {
@@ -20791,19 +20784,9 @@ export interface operations {
         filterQaCheckType?: (
           | "EMPTY_TRANSLATION"
           | "SPACES_MISMATCH"
-          | "UNMATCHED_NEWLINES"
           | "CHARACTER_CASE_MISMATCH"
           | "MISSING_NUMBERS"
           | "PUNCTUATION_MISMATCH"
-          | "BRACKETS_MISMATCH"
-          | "SPECIAL_CHARACTER_MISMATCH"
-          | "DIFFERENT_URLS"
-          | "INCONSISTENT_PLACEHOLDERS"
-          | "INCONSISTENT_HTML"
-          | "ICU_SYNTAX"
-          | "REPEATED_WORDS"
-          | "SPELLING"
-          | "UNRESOLVED_COMMENTS"
         )[];
         /** Filter keys with any suggestions in lang */
         filterHasSuggestionsInLang?: string[];
@@ -21116,19 +21099,9 @@ export interface operations {
         filterQaCheckType?: (
           | "EMPTY_TRANSLATION"
           | "SPACES_MISMATCH"
-          | "UNMATCHED_NEWLINES"
           | "CHARACTER_CASE_MISMATCH"
           | "MISSING_NUMBERS"
           | "PUNCTUATION_MISMATCH"
-          | "BRACKETS_MISMATCH"
-          | "SPECIAL_CHARACTER_MISMATCH"
-          | "DIFFERENT_URLS"
-          | "INCONSISTENT_PLACEHOLDERS"
-          | "INCONSISTENT_HTML"
-          | "ICU_SYNTAX"
-          | "REPEATED_WORDS"
-          | "SPELLING"
-          | "UNRESOLVED_COMMENTS"
         )[];
         /** Filter keys with any suggestions in lang */
         filterHasSuggestionsInLang?: string[];
