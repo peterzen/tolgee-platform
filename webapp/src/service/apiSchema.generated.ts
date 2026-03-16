@@ -5584,6 +5584,7 @@ export interface components {
         | "qa_case_lowercase"
         | "qa_numbers_missing";
       params?: { [key: string]: string };
+      pluralVariant?: string;
       /** Format: int32 */
       positionEnd: number;
       /** Format: int32 */
@@ -5628,6 +5629,7 @@ export interface components {
         | "qa_case_lowercase"
         | "qa_numbers_missing";
       params?: { [key: string]: string };
+      pluralVariant?: string;
       /** Format: int32 */
       positionEnd: number;
       /** Format: int32 */
