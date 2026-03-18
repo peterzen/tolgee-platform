@@ -5552,6 +5552,7 @@ export interface components {
       checkTypes: (
         | "EMPTY_TRANSLATION"
         | "SPACES_MISMATCH"
+        | "UNMATCHED_NEWLINES"
         | "CHARACTER_CASE_MISMATCH"
         | "MISSING_NUMBERS"
         | "PUNCTUATION_MISMATCH"
@@ -5574,7 +5575,11 @@ export interface components {
         | "qa_punctuation_replace"
         | "qa_case_capitalize"
         | "qa_case_lowercase"
-        | "qa_numbers_missing";
+        | "qa_numbers_missing"
+        | "qa_newlines_missing"
+        | "qa_newlines_extra"
+        | "qa_newlines_too_many_sections"
+        | "qa_newlines_too_few_sections";
       params?: { [key: string]: string };
       pluralVariant?: string;
       /** Format: int32 */
@@ -5586,6 +5591,7 @@ export interface components {
       type:
         | "EMPTY_TRANSLATION"
         | "SPACES_MISMATCH"
+        | "UNMATCHED_NEWLINES"
         | "CHARACTER_CASE_MISMATCH"
         | "MISSING_NUMBERS"
         | "PUNCTUATION_MISMATCH";
@@ -5609,7 +5615,11 @@ export interface components {
         | "qa_punctuation_replace"
         | "qa_case_capitalize"
         | "qa_case_lowercase"
-        | "qa_numbers_missing";
+        | "qa_numbers_missing"
+        | "qa_newlines_missing"
+        | "qa_newlines_extra"
+        | "qa_newlines_too_many_sections"
+        | "qa_newlines_too_few_sections";
       params?: { [key: string]: string };
       pluralVariant?: string;
       /** Format: int32 */
@@ -5623,6 +5633,7 @@ export interface components {
       type:
         | "EMPTY_TRANSLATION"
         | "SPACES_MISMATCH"
+        | "UNMATCHED_NEWLINES"
         | "CHARACTER_CASE_MISMATCH"
         | "MISSING_NUMBERS"
         | "PUNCTUATION_MISMATCH";
@@ -15794,6 +15805,7 @@ export interface operations {
         filterQaCheckType?: (
           | "EMPTY_TRANSLATION"
           | "SPACES_MISMATCH"
+          | "UNMATCHED_NEWLINES"
           | "CHARACTER_CASE_MISMATCH"
           | "MISSING_NUMBERS"
           | "PUNCTUATION_MISMATCH"
@@ -15929,6 +15941,7 @@ export interface operations {
         filterQaCheckType?: (
           | "EMPTY_TRANSLATION"
           | "SPACES_MISMATCH"
+          | "UNMATCHED_NEWLINES"
           | "CHARACTER_CASE_MISMATCH"
           | "MISSING_NUMBERS"
           | "PUNCTUATION_MISMATCH"
@@ -16100,6 +16113,7 @@ export interface operations {
         filterQaCheckType?: (
           | "EMPTY_TRANSLATION"
           | "SPACES_MISMATCH"
+          | "UNMATCHED_NEWLINES"
           | "CHARACTER_CASE_MISMATCH"
           | "MISSING_NUMBERS"
           | "PUNCTUATION_MISMATCH"
@@ -20782,6 +20796,7 @@ export interface operations {
         filterQaCheckType?: (
           | "EMPTY_TRANSLATION"
           | "SPACES_MISMATCH"
+          | "UNMATCHED_NEWLINES"
           | "CHARACTER_CASE_MISMATCH"
           | "MISSING_NUMBERS"
           | "PUNCTUATION_MISMATCH"
@@ -21097,6 +21112,7 @@ export interface operations {
         filterQaCheckType?: (
           | "EMPTY_TRANSLATION"
           | "SPACES_MISMATCH"
+          | "UNMATCHED_NEWLINES"
           | "CHARACTER_CASE_MISMATCH"
           | "MISSING_NUMBERS"
           | "PUNCTUATION_MISMATCH"
