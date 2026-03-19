@@ -5556,6 +5556,7 @@ export interface components {
         | "CHARACTER_CASE_MISMATCH"
         | "MISSING_NUMBERS"
         | "PUNCTUATION_MISMATCH"
+        | "SPECIAL_CHARACTER_MISMATCH"
         | "DIFFERENT_URLS"
       )[];
     };
@@ -5581,6 +5582,8 @@ export interface components {
         | "qa_newlines_extra"
         | "qa_newlines_too_many_sections"
         | "qa_newlines_too_few_sections"
+        | "qa_special_char_missing"
+        | "qa_special_char_added"
         | "qa_url_missing"
         | "qa_url_extra"
         | "qa_url_replace";
@@ -5599,6 +5602,7 @@ export interface components {
         | "CHARACTER_CASE_MISMATCH"
         | "MISSING_NUMBERS"
         | "PUNCTUATION_MISMATCH"
+        | "SPECIAL_CHARACTER_MISMATCH"
         | "DIFFERENT_URLS";
     };
     QaIssueModel: {
@@ -5625,6 +5629,8 @@ export interface components {
         | "qa_newlines_extra"
         | "qa_newlines_too_many_sections"
         | "qa_newlines_too_few_sections"
+        | "qa_special_char_missing"
+        | "qa_special_char_added"
         | "qa_url_missing"
         | "qa_url_extra"
         | "qa_url_replace";
@@ -5645,6 +5651,7 @@ export interface components {
         | "CHARACTER_CASE_MISMATCH"
         | "MISSING_NUMBERS"
         | "PUNCTUATION_MISMATCH"
+        | "SPECIAL_CHARACTER_MISMATCH"
         | "DIFFERENT_URLS";
     };
     QaLanguageSettingsModel: {
@@ -15818,6 +15825,7 @@ export interface operations {
           | "CHARACTER_CASE_MISMATCH"
           | "MISSING_NUMBERS"
           | "PUNCTUATION_MISMATCH"
+          | "SPECIAL_CHARACTER_MISMATCH"
           | "DIFFERENT_URLS"
         )[];
         /** Filter keys with any suggestions in lang */
@@ -15955,6 +15963,7 @@ export interface operations {
           | "CHARACTER_CASE_MISMATCH"
           | "MISSING_NUMBERS"
           | "PUNCTUATION_MISMATCH"
+          | "SPECIAL_CHARACTER_MISMATCH"
           | "DIFFERENT_URLS"
         )[];
         /** Filter keys with any suggestions in lang */
@@ -16128,6 +16137,7 @@ export interface operations {
           | "CHARACTER_CASE_MISMATCH"
           | "MISSING_NUMBERS"
           | "PUNCTUATION_MISMATCH"
+          | "SPECIAL_CHARACTER_MISMATCH"
           | "DIFFERENT_URLS"
         )[];
         /** Filter keys with any suggestions in lang */
@@ -20812,6 +20822,7 @@ export interface operations {
           | "CHARACTER_CASE_MISMATCH"
           | "MISSING_NUMBERS"
           | "PUNCTUATION_MISMATCH"
+          | "SPECIAL_CHARACTER_MISMATCH"
           | "DIFFERENT_URLS"
         )[];
         /** Filter keys with any suggestions in lang */
@@ -21129,6 +21140,7 @@ export interface operations {
           | "CHARACTER_CASE_MISMATCH"
           | "MISSING_NUMBERS"
           | "PUNCTUATION_MISMATCH"
+          | "SPECIAL_CHARACTER_MISMATCH"
           | "DIFFERENT_URLS"
         )[];
         /** Filter keys with any suggestions in lang */
