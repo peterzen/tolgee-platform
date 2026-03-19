@@ -5560,6 +5560,8 @@ export interface components {
         | "BRACKETS_UNBALANCED"
         | "SPECIAL_CHARACTER_MISMATCH"
         | "DIFFERENT_URLS"
+        | "INCONSISTENT_PLACEHOLDERS"
+        | "ICU_SYNTAX"
         | "REPEATED_WORDS"
       )[];
     };
@@ -5594,7 +5596,10 @@ export interface components {
         | "qa_url_missing"
         | "qa_url_extra"
         | "qa_url_replace"
-        | "qa_repeated_word";
+        | "qa_repeated_word"
+        | "qa_placeholders_missing"
+        | "qa_placeholders_extra"
+        | "qa_icu_syntax_error";
       params?: { [key: string]: string };
       pluralVariant?: string;
       /** Format: int32 */
@@ -5614,6 +5619,8 @@ export interface components {
         | "BRACKETS_UNBALANCED"
         | "SPECIAL_CHARACTER_MISMATCH"
         | "DIFFERENT_URLS"
+        | "INCONSISTENT_PLACEHOLDERS"
+        | "ICU_SYNTAX"
         | "REPEATED_WORDS";
     };
     QaIssueModel: {
@@ -5649,7 +5656,10 @@ export interface components {
         | "qa_url_missing"
         | "qa_url_extra"
         | "qa_url_replace"
-        | "qa_repeated_word";
+        | "qa_repeated_word"
+        | "qa_placeholders_missing"
+        | "qa_placeholders_extra"
+        | "qa_icu_syntax_error";
       params?: { [key: string]: string };
       pluralVariant?: string;
       /** Format: int32 */
@@ -5671,6 +5681,8 @@ export interface components {
         | "BRACKETS_UNBALANCED"
         | "SPECIAL_CHARACTER_MISMATCH"
         | "DIFFERENT_URLS"
+        | "INCONSISTENT_PLACEHOLDERS"
+        | "ICU_SYNTAX"
         | "REPEATED_WORDS";
     };
     QaLanguageSettingsModel: {
@@ -15848,6 +15860,8 @@ export interface operations {
           | "BRACKETS_UNBALANCED"
           | "SPECIAL_CHARACTER_MISMATCH"
           | "DIFFERENT_URLS"
+          | "INCONSISTENT_PLACEHOLDERS"
+          | "ICU_SYNTAX"
           | "REPEATED_WORDS"
         )[];
         /** Filter keys with any suggestions in lang */
@@ -15989,6 +16003,8 @@ export interface operations {
           | "BRACKETS_UNBALANCED"
           | "SPECIAL_CHARACTER_MISMATCH"
           | "DIFFERENT_URLS"
+          | "INCONSISTENT_PLACEHOLDERS"
+          | "ICU_SYNTAX"
           | "REPEATED_WORDS"
         )[];
         /** Filter keys with any suggestions in lang */
@@ -16166,6 +16182,8 @@ export interface operations {
           | "BRACKETS_UNBALANCED"
           | "SPECIAL_CHARACTER_MISMATCH"
           | "DIFFERENT_URLS"
+          | "INCONSISTENT_PLACEHOLDERS"
+          | "ICU_SYNTAX"
           | "REPEATED_WORDS"
         )[];
         /** Filter keys with any suggestions in lang */
@@ -20854,6 +20872,8 @@ export interface operations {
           | "BRACKETS_UNBALANCED"
           | "SPECIAL_CHARACTER_MISMATCH"
           | "DIFFERENT_URLS"
+          | "INCONSISTENT_PLACEHOLDERS"
+          | "ICU_SYNTAX"
           | "REPEATED_WORDS"
         )[];
         /** Filter keys with any suggestions in lang */
@@ -21175,6 +21195,8 @@ export interface operations {
           | "BRACKETS_UNBALANCED"
           | "SPECIAL_CHARACTER_MISMATCH"
           | "DIFFERENT_URLS"
+          | "INCONSISTENT_PLACEHOLDERS"
+          | "ICU_SYNTAX"
           | "REPEATED_WORDS"
         )[];
         /** Filter keys with any suggestions in lang */
