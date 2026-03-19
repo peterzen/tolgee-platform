@@ -5560,6 +5560,7 @@ export interface components {
         | "BRACKETS_UNBALANCED"
         | "SPECIAL_CHARACTER_MISMATCH"
         | "DIFFERENT_URLS"
+        | "REPEATED_WORDS"
       )[];
     };
     QaCheckIssueIgnoreRequest: {
@@ -5584,13 +5585,16 @@ export interface components {
         | "qa_newlines_extra"
         | "qa_newlines_too_many_sections"
         | "qa_newlines_too_few_sections"
-        | "qa_brackets_different"
-        | "qa_brackets_unbalanced"
+        | "qa_brackets_missing"
+        | "qa_brackets_extra"
+        | "qa_brackets_unclosed"
+        | "qa_brackets_unmatched_close"
         | "qa_special_char_missing"
         | "qa_special_char_added"
         | "qa_url_missing"
         | "qa_url_extra"
-        | "qa_url_replace";
+        | "qa_url_replace"
+        | "qa_repeated_word";
       params?: { [key: string]: string };
       pluralVariant?: string;
       /** Format: int32 */
@@ -5609,7 +5613,8 @@ export interface components {
         | "BRACKETS_MISMATCH"
         | "BRACKETS_UNBALANCED"
         | "SPECIAL_CHARACTER_MISMATCH"
-        | "DIFFERENT_URLS";
+        | "DIFFERENT_URLS"
+        | "REPEATED_WORDS";
     };
     QaIssueModel: {
       /** Format: int64 */
@@ -5635,13 +5640,16 @@ export interface components {
         | "qa_newlines_extra"
         | "qa_newlines_too_many_sections"
         | "qa_newlines_too_few_sections"
-        | "qa_brackets_different"
-        | "qa_brackets_unbalanced"
+        | "qa_brackets_missing"
+        | "qa_brackets_extra"
+        | "qa_brackets_unclosed"
+        | "qa_brackets_unmatched_close"
         | "qa_special_char_missing"
         | "qa_special_char_added"
         | "qa_url_missing"
         | "qa_url_extra"
-        | "qa_url_replace";
+        | "qa_url_replace"
+        | "qa_repeated_word";
       params?: { [key: string]: string };
       pluralVariant?: string;
       /** Format: int32 */
@@ -5662,7 +5670,8 @@ export interface components {
         | "BRACKETS_MISMATCH"
         | "BRACKETS_UNBALANCED"
         | "SPECIAL_CHARACTER_MISMATCH"
-        | "DIFFERENT_URLS";
+        | "DIFFERENT_URLS"
+        | "REPEATED_WORDS";
     };
     QaLanguageSettingsModel: {
       settings?: { [key: string]: "WARNING" | "OFF" };
@@ -15839,6 +15848,7 @@ export interface operations {
           | "BRACKETS_UNBALANCED"
           | "SPECIAL_CHARACTER_MISMATCH"
           | "DIFFERENT_URLS"
+          | "REPEATED_WORDS"
         )[];
         /** Filter keys with any suggestions in lang */
         filterHasSuggestionsInLang?: string[];
@@ -15979,6 +15989,7 @@ export interface operations {
           | "BRACKETS_UNBALANCED"
           | "SPECIAL_CHARACTER_MISMATCH"
           | "DIFFERENT_URLS"
+          | "REPEATED_WORDS"
         )[];
         /** Filter keys with any suggestions in lang */
         filterHasSuggestionsInLang?: string[];
@@ -16155,6 +16166,7 @@ export interface operations {
           | "BRACKETS_UNBALANCED"
           | "SPECIAL_CHARACTER_MISMATCH"
           | "DIFFERENT_URLS"
+          | "REPEATED_WORDS"
         )[];
         /** Filter keys with any suggestions in lang */
         filterHasSuggestionsInLang?: string[];
@@ -20842,6 +20854,7 @@ export interface operations {
           | "BRACKETS_UNBALANCED"
           | "SPECIAL_CHARACTER_MISMATCH"
           | "DIFFERENT_URLS"
+          | "REPEATED_WORDS"
         )[];
         /** Filter keys with any suggestions in lang */
         filterHasSuggestionsInLang?: string[];
@@ -21162,6 +21175,7 @@ export interface operations {
           | "BRACKETS_UNBALANCED"
           | "SPECIAL_CHARACTER_MISMATCH"
           | "DIFFERENT_URLS"
+          | "REPEATED_WORDS"
         )[];
         /** Filter keys with any suggestions in lang */
         filterHasSuggestionsInLang?: string[];
