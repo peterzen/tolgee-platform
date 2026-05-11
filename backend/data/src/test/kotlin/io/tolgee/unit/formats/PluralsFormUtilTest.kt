@@ -52,12 +52,11 @@ class PluralsFormUtilTest {
     val input = "{count, plural, =0 {You have no likes.} one {You have # like.} other {You have # likes.}}"
     val forms = getPluralForms(input)!!.forms
     val output = forms.toIcuPluralString(optimize = false, addNewLines = false, argName = "count")
-    // =0 must appear before one and other in the output
-    assert(output.indexOf("=0") < output.indexOf("one")) {
-      "=0 should come before 'one' in: $output"
-    }
-    assert(output.indexOf("=0") < output.indexOf("other")) {
-      "=0 should come before 'other' in: $output"
+    val exactIdx = output.indexOf("=0")
+    val oneIdx = output.indexOf("one")
+    val otherIdx = output.indexOf("other")
+    assert(exactIdx < oneIdx && exactIdx < otherIdx) {
+      "=0 should come before 'one' and 'other' (indices: =0=$exactIdx, one=$oneIdx, other=$otherIdx) in: $output"
     }
   }
 
